@@ -12,7 +12,6 @@ engine = engine.create_engine(f"sqlite:///{db_path}")
 
 
 Base.metadata.create_all(engine)
-Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 
 session = DBSession()
