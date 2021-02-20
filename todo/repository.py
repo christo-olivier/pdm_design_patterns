@@ -42,7 +42,7 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
 
-class SQLRepository:
+class SQLRepository(AbstractRepository):
     def __init__(self, session):
         self.session = session
 
