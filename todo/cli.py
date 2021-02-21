@@ -9,8 +9,6 @@ from todo.data import Base, Item
 
 db_path = "/Users/christo/repos/todo/todo_app.sqlite"
 engine = engine.create_engine(f"sqlite:///{db_path}")
-
-
 Base.metadata.create_all(engine)
 DBSession = sessionmaker(bind=engine)
 
