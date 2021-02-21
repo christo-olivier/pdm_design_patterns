@@ -2,21 +2,11 @@ import sys
 from datetime import datetime
 from typing import List
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.exc import IntegrityError
-
-from todo.orm import metadata, start_mapper
 from todo.model import ToDoItem
-from todo.repository import SQLRepository
+from todo.repository import CSVRepository
 
 # Setup database and session object
-db_path = "/Users/christo/repos/todo/todo_app.sqlite"
-engine = create_engine(f"sqlite:///{db_path}")
-metadata.create_all(engine)
-start_mapper()
-get_session = sessionmaker(bind=engine)
-session = get_session()
+db_path = "/Users/christo/repos/todo/todo_app.csv"
 
 
 def _print_item(item: ToDoItem):
@@ -52,7 +42,7 @@ def show_due(due: str, items: List[ToDoItem]) -> None:
         due = datetime.strptime(due, "%Y-%m-%d").date()
 
     for item in items:
-        if item.due <= due:
+        if item.due <= due and item.status == "active":
             _print_item(item)
 
 
@@ -66,7 +56,7 @@ def main():
     command = args[0].lower()
 
     # Instantiate the repository
-    repo = SQLRepository(session=session)
+    repo = CSVRepository(db_path=db_path)
 
     # Execute commands
     if command == "add":
