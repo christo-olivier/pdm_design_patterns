@@ -1,6 +1,6 @@
 import sys
 
-import todo.data as data
+from todo import data
 
 
 def _get_args():
