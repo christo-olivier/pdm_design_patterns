@@ -2,21 +2,9 @@ import sys
 from datetime import datetime
 from typing import List
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.exc import IntegrityError
-
-from todo.orm import metadata, start_mapper
+from todo.db import session
 from todo.model import ToDoItem
 from todo.repository import SQLRepository
-
-# Setup database and session object
-db_path = "/Users/christo/repos/todo/todo_app.sqlite"
-engine = create_engine(f"sqlite:///{db_path}")
-metadata.create_all(engine)
-start_mapper()
-get_session = sessionmaker(bind=engine)
-session = get_session()
 
 
 def _print_item(item: ToDoItem):
