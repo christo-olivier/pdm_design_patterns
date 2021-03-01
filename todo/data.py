@@ -52,9 +52,9 @@ def mark_complete(name: str) -> None:
     item = session.query(Item).filter(Item.name == name).first()
 
     if not item:
-        print("No todo item with name `{name}` found.")
+        print(f"No todo item with name `{name}` found.")
 
-    item.status = "complete"
+    item.status = "done"
     item.completed = datetime.now().date()
     session.commit()
 
@@ -93,7 +93,8 @@ def show_due(due: str) -> None:
 
     items = session.query(Item).filter(Item.due <= due)
     for item in items:
-        _print_item(item)
+        if item.status != "done":
+            _print_item(item)
 
 
 def update_item(name: str, due: str, priority: str) -> None:
