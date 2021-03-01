@@ -42,7 +42,7 @@ def show_due(due: str, items: List[ToDoItem]) -> None:
         due = datetime.strptime(due, "%Y-%m-%d").date()
 
     for item in items:
-        if item.due <= due and item.status == "active":
+        if item.due <= due and item.status != "done":
             _print_item(item)
 
 
@@ -63,6 +63,7 @@ def main():
         new_item = ToDoItem(
             name=args[1],
             due=datetime.strptime(args[2], "%Y-%m-%d").date(),
+            status="active",
             priority=args[3],
         )
         try:

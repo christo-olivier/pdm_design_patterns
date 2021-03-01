@@ -9,4 +9,4 @@ class ToDoItem:
     due: date
     priority: str
     completed: date = None
-    status: str = "active"
+    status: str = None
