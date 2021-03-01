@@ -40,7 +40,7 @@ def show_due(due: str, items: List[ToDoItem]) -> None:
         due = datetime.strptime(due, "%Y-%m-%d").date()
 
     for item in items:
-        if item.due <= due:
+        if item.due <= due and item.status != "done":
             _print_item(item)
 
 
