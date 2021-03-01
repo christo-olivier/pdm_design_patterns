@@ -70,9 +70,9 @@ class SQLRepository(AbstractRepository):
         item = self.session.query(ToDoItem).filter(ToDoItem.name == name).first()
 
         if not item:
-            raise NoItemFoundError("No todo item with name `{name}` found.")
+            raise NoItemFoundError(f"No todo item with name `{name}` found.")
 
-        item.status = "complete"
+        item.status = "done"
         item.completed = datetime.now().date()
         self.session.commit()
 
