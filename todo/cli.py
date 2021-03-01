@@ -61,6 +61,7 @@ def main():
         new_item = ToDoItem(
             name=args[1],
             due=datetime.strptime(args[2], "%Y-%m-%d").date(),
+            status="active",
             priority=args[3],
         )
         try:
